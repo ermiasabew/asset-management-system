@@ -108,13 +108,26 @@ function setupEventListeners() {
     // Menu toggle
     document.getElementById('menuToggle')?.addEventListener('click', () => {
         const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        
         // On mobile, toggle 'open' class
         if (window.innerWidth <= 768) {
             sidebar.classList.toggle('open');
+            if (overlay) {
+                overlay.classList.toggle('active');
+            }
         } else {
             // On desktop, toggle 'collapsed' class
             sidebar.classList.toggle('collapsed');
         }
+    });
+    
+    // Close sidebar when clicking overlay (mobile)
+    document.querySelector('.sidebar-overlay')?.addEventListener('click', () => {
+        const sidebar = document.querySelector('.sidebar');
+        const overlay = document.querySelector('.sidebar-overlay');
+        sidebar.classList.remove('open');
+        overlay.classList.remove('active');
     });
     
     // Navigation
@@ -158,6 +171,12 @@ function setupEventListeners() {
 function navigateTo(page) {
     state.currentPage = page;
     
+    // Close sidebar on mobile after navigation
+    if (window.innerWidth <= 768) {
+        const sidebar = document.querySelector('.sidebar');
+        sidebar.classList.remove('open');
+    }
+    
     // Update active nav item
     document.querySelectorAll('.nav-item').forEach(item => {
         item.classList.remove('active');
@@ -175,7 +194,8 @@ function navigateTo(page) {
         clients: 'Client Management',
         rentals: 'Rental Properties',
         reports: 'Reports & Analytics',
-        users: 'User Management'
+        users: 'User Management',
+        settings: 'Settings'
     };
     document.getElementById('pageTitle').textContent = titles[page] || page;
     
