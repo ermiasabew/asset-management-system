@@ -48,6 +48,29 @@ app.use((err, req, res, next) => {
 const startServer = async () => {
   try {
     await db.connect();
+    
+    // Check if database is initialized
+    const checkTable = await db.get("SELECT name FROM sqlite_master WHERE type='table' AND name='users'");
+    
+    if (!checkTable) {
+      console.log('Database not initialized. Running initialization...');
+      const { exec } = require('child_process');
+      await new Promise((resolve, reject) => {
+        exec('node server/initDb.js', (error, stdout, stderr) => {
+          if (error) {
+            console.error('Init error:', error);
+            reject(error);
+          } else {
+            console.log(stdout);
+            resolve();
+          }
+        });
+      });
+      console.log('Database initialized successfully!');
+    } else {
+      console.log('Database already initialized');
+    }
+    
     app.listen(PORT, '0.0.0.0', () => {
       console.log(`\n✓ Server running on:`);
       console.log(`  - Local:   http://localhost:${PORT}`);
