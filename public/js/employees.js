@@ -1155,12 +1155,12 @@ function showImportEmployeesModal() {
         <div style="margin-bottom: 16px;">
             <p style="margin-bottom: 12px;">Upload a CSV file with employee data. The file should have the following columns:</p>
             <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px; font-size: 13px; margin-bottom: 12px;">
-                <strong>Required columns:</strong><br>
-                employee_code, first_name, last_name, category, position, phone, email, hire_date
+                <strong>✅ Required columns (MANDATORY):</strong><br>
+                employee_code, first_name, last_name, category, position, phone, hire_date, status
             </div>
             <div style="background: var(--bg-secondary); padding: 12px; border-radius: 6px; font-size: 13px; margin-bottom: 12px;">
-                <strong>Optional columns:</strong><br>
-                date_of_birth, national_id, address, emergency_contact, emergency_phone, salary, bank_account, status
+                <strong>📝 Optional columns:</strong><br>
+                email, date_of_birth, national_id, address, emergency_contact, emergency_phone, salary, bank_account
             </div>
             <div style="background: var(--warning-bg); padding: 12px; border-radius: 6px; font-size: 13px; margin-bottom: 12px; color: var(--warning-color);">
                 <strong>Note:</strong> Salary should be in ETB (Ethiopian Birr). Full name will be automatically generated from first_name and last_name.

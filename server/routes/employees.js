@@ -241,8 +241,11 @@ router.post('/import', auth, authorize('admin', 'hr_manager'), upload.single('fi
         console.log(`Processing row ${i}:`, employee.employee_code);
 
         // Validate required fields
-        if (!employee.employee_code || !employee.first_name || !employee.last_name) {
-          errorDetails.push(`Row ${i + 1}: Missing required fields`);
+        const requiredFields = ['employee_code', 'first_name', 'last_name', 'category', 'position', 'phone', 'hire_date', 'status'];
+        const missingFields = requiredFields.filter(field => !employee[field]);
+        
+        if (missingFields.length > 0) {
+          errorDetails.push(`Row ${i + 1}: Missing required fields: ${missingFields.join(', ')}`);
           errors++;
           continue;
         }

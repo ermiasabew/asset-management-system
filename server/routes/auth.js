@@ -19,7 +19,8 @@ router.post('/login', [
     }
 
     const { username, password } = req.body;
-    const user = await db.get('SELECT * FROM users WHERE username = ?', [username]);
+    // Case-insensitive username lookup
+    const user = await db.get('SELECT * FROM users WHERE LOWER(username) = LOWER(?)', [username]);
 
     if (!user || user.status !== 'active') {
       return res.status(401).json({ error: 'Invalid credentials' });
