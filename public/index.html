@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asset & Inventory Management System</title>
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <!-- Login Page -->
+    <div id="loginPage" class="login-container">
+        <div class="login-box">
+            <div class="login-header">
+                <i class="fas fa-building"></i>
+                <h1>Asset Management System</h1>
+                <p>Secure Login</p>
+            </div>
+            <form id="loginForm">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username</label>
+                    <input type="text" id="loginUsername" required>
+                </div>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <input type="password" id="loginPassword" required>
+                </div>
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+            </form>
+            <div id="loginError" class="error-message"></div>
+        </div>
+    </div>
+
+    <!-- Main Application -->
+    <div id="mainApp" class="app-container" style="display: none;">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <i class="fas fa-building"></i>
+                <h2>AMS</h2>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-page="dashboard" title="Dashboard">
+                    <i class="fas fa-chart-line"></i> <span>Dashboard</span>
+                </a>
+                <a href="#" class="nav-item" data-page="assets" title="Assets">
+                    <i class="fas fa-box"></i> <span>Assets</span>
+                </a>
+                <a href="#" class="nav-item" data-page="inventory" title="Inventory">
+                    <i class="fas fa-warehouse"></i> <span>Inventory</span>
+                </a>
+                <a href="#" class="nav-item" data-page="employees" title="Employees">
+                    <i class="fas fa-users"></i> <span>Employees</span>
+                </a>
+                <a href="#" class="nav-item" data-page="clients" title="Clients">
+                    <i class="fas fa-handshake"></i> <span>Clients</span>
+                </a>
+                <a href="#" class="nav-item" data-page="rentals" title="Rentals">
+                    <i class="fas fa-home"></i> <span>Rentals</span>
+                </a>
+                <a href="#" class="nav-item" data-page="reports" title="Reports">
+                    <i class="fas fa-file-alt"></i> <span>Reports</span>
+                </a>
+                <a href="#" class="nav-item" data-page="users" id="usersNavItem" title="Users" style="display: none;">
+                    <i class="fas fa-users-cog"></i> <span>Users</span>
+                </a>
+                <a href="#" class="nav-item" data-page="settings" title="Settings">
+                    <i class="fas fa-cog"></i> <span>Settings</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="btn-icon" id="menuToggle">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <h1 id="pageTitle">Dashboard</h1>
+                </div>
+                <div class="header-right">
+                    <button class="btn-icon" id="notificationBtn">
+                        <i class="fas fa-bell"></i>
+                        <span class="badge" id="notificationCount">0</span>
+                    </button>
+                    <button class="btn-icon" id="themeToggle">
+                        <i class="fas fa-moon"></i>
+                    </button>
+                    <div class="user-menu">
+                        <button class="btn-icon" id="userMenuBtn">
+                            <i class="fas fa-user-circle"></i>
+                            <span id="userName">User</span>
+                        </button>
+                        <div class="dropdown-menu" id="userDropdown">
+                            <a href="#" id="profileBtn"><i class="fas fa-user"></i> Profile</a>
+                            <a href="#" id="settingsBtn"><i class="fas fa-cog"></i> Settings</a>
+                            <a href="#" id="logoutBtn"><i class="fas fa-sign-out-alt"></i> Logout</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <main class="content" id="contentArea">
+                <!-- Dashboard will be loaded here -->
+            </main>
+        </div>
+    </div>
+
+    <!-- Notification Panel -->
+    <div class="notification-panel" id="notificationPanel">
+        <div class="notification-header">
+            <h3>Notifications</h3>
+            <button class="btn-icon" id="closeNotifications">
+                <i class="fas fa-times"></i>
+            </button>
+        </div>
+        <div class="notification-list" id="notificationList">
+            <!-- Notifications will be loaded here -->
+        </div>
+    </div>
+
+    <!-- Modal Container -->
+    <div id="modalContainer"></div>
+
+    <script src="js/app.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script src="js/assets.js"></script>
+    <script src="js/inventory.js"></script>
+    <script src="js/employees.js"></script>
+    <script src="js/clients.js"></script>
+    <script src="js/rentals.js"></script>
+    <script src="js/reports.js"></script>
+    <script src="js/users.js"></script>
+    <script src="js/settings.js"></script>
+</body>
+</html>
